@@ -1,22 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import ReactGA from 'react-ga4';
 
 function App() {
+  const [clickAmount, setClickAmount] = useState(0);
+
+  const handleSetClickAmount = () => {
+    const newAmount = clickAmount + 1;
+    ReactGA.event('increment_button_clicked', {
+      click_amount: newAmount,
+    });
+    setClickAmount(newAmount);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>current amount: {clickAmount}</p>
+        <button onClick={handleSetClickAmount}>Click to increment!</button>
       </header>
     </div>
   );
