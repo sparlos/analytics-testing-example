@@ -16,7 +16,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>current amount: {clickAmount}</p>
+        <p>
+          current amount: <span data-testid="click-amount">{clickAmount}</span>
+        </p>
         <button onClick={handleSetClickAmount}>Click to increment!</button>
       </header>
     </div>
