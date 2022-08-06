@@ -1,11 +1,11 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
-import { event } from 'react-ga4';
+import { makeAnalyticsCall } from './services/analytics';
 
-jest.mock('react-ga4', () => {
+jest.mock('./services/analytics', () => {
   return {
     ...jest.requireActual('react-ga4'),
-    event: jest.fn(),
+    makeAnalyticsCall: jest.fn(),
   };
 });
 
@@ -31,21 +31,27 @@ describe('App tests', () => {
       render(<App />);
       const incrementButton = screen.getByRole('button');
       fireEvent.click(incrementButton);
-      expect(event).toHaveBeenCalledTimes(1);
+      expect(makeAnalyticsCall).toHaveBeenCalledTimes(1);
     });
 
     it('should run the "increment_button_clicked" GA callout with the correct properties', () => {
       render(<App />);
       const incrementButton = screen.getByRole('button');
       fireEvent.click(incrementButton);
-      expect(event).toHaveBeenCalledWith('increment_button_clicked', {
-        click_amount: 1,
-      });
+      expect(makeAnalyticsCall).toHaveBeenCalledWith(
+        'increment_button_clicked',
+        {
+          click_amount: 1,
+        }
+      );
 
       fireEvent.click(incrementButton);
-      expect(event).toHaveBeenCalledWith('increment_button_clicked', {
-        click_amount: 2,
-      });
+      expect(makeAnalyticsCall).toHaveBeenCalledWith(
+        'increment_button_clicked',
+        {
+          click_amount: 2,
+        }
+      );
     });
   });
 });
