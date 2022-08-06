@@ -27,14 +27,14 @@ describe('App tests', () => {
   });
 
   describe('Analytics callouts', () => {
-    it('should run the "increment_button_clicked" GA callout when the button is clicked', () => {
+    it('should make an analytics call when the button is clicked', () => {
       render(<App />);
       const incrementButton = screen.getByRole('button');
       fireEvent.click(incrementButton);
       expect(makeAnalyticsCall).toHaveBeenCalledTimes(1);
     });
 
-    it('should run the "increment_button_clicked" GA callout with the correct properties', () => {
+    it('should make an analytics call with the correct properties when the button is clicked', () => {
       render(<App />);
       const incrementButton = screen.getByRole('button');
       fireEvent.click(incrementButton);
