@@ -2,12 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import { makeAnalyticsCall } from './services/analytics';
 
-jest.mock('./services/analytics', () => {
-  return {
-    ...jest.requireActual('react-ga4'),
-    makeAnalyticsCall: jest.fn(),
-  };
-});
+jest.mock('./services/analytics');
 
 describe('App tests', () => {
   beforeEach(() => {

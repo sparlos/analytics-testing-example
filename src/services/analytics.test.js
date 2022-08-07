@@ -1,10 +1,6 @@
 import { makeAnalyticsCall } from './analytics';
 import ReactGA from 'react-ga4';
-
-jest.mock('react-ga4', () => ({
-  ...jest.requireActual('react-ga4'),
-  event: jest.fn(),
-}));
+jest.mock('react-ga4');
 
 describe('(Service) analytics', () => {
   beforeEach(() => {
