@@ -9,18 +9,6 @@ describe('App tests', () => {
     jest.clearAllMocks();
   });
 
-  describe('base functionality', () => {
-    it('properly increments the displayed value on click of the button', () => {
-      render(<App />);
-      const clickAmount = screen.getByTestId('click-amount');
-      expect(clickAmount).toHaveTextContent('0');
-      const incrementButton = screen.getByRole('button');
-      fireEvent.click(incrementButton);
-      const updatedClickAmount = screen.getByTestId('click-amount');
-      expect(updatedClickAmount).toHaveTextContent('1');
-    });
-  });
-
   describe('Analytics callouts', () => {
     it('should make an analytics call when the button is clicked', () => {
       render(<App />);
